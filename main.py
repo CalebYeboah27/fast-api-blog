@@ -43,4 +43,4 @@ app.add_middleware(
 
 
 # Making system files statically available to the browser without APIs
-app.mount('/files', StaticFiles(directory='files'), name='files')
+# app.mount('/files', StaticFiles(directory='files'), name='files')
