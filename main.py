@@ -1,12 +1,14 @@
 from fastapi import Depends, FastAPI
-from router import blog_get, blog_post, user, article, product
+from router import blog_get, blog_post, user, article, product, file
 from auth import authentication
 from db import models
 from db.database import engine, get_db
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 
 app = FastAPI()
+app.include_router(file.router)
 app.include_router(authentication.router)
 app.include_router(user.router)
 app.include_router(article.router)
@@ -27,6 +29,8 @@ def index():
 
 models.Base.metadata.create_all(engine)
 
+# Allow CORS
+
 origins = ['http://localhost:3000']
 
 app.add_middleware(
@@ -36,3 +40,7 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*']
 )
+
+
+# Making system files statically available to the browser without APIs
+app.mount('/files', StaticFiles(directory='files'), name='files')
