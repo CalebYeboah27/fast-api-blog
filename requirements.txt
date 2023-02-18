@@ -4,6 +4,11 @@ sqlalchemy~=2.0.3
 passlib~=1.7.4
 bcrypt
 pydantic~=1.10.4
-python-multipart # to process Form data from the frontend 
-python-jose #for jwt encoding
-aiofiles
+python-multipart  # to process Form data from the frontend 
+python-jose  #for jwt encoding
+aiofiles  # for working with files in fastapi
+motor==2.4.0 # Mongodb connector
+requests
+pytest
+httpx
+jinja2  # Templating engilne
