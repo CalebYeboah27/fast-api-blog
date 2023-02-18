@@ -1,5 +1,5 @@
 from fastapi import Depends, FastAPI, Request
-from router import blog_get, blog_post, user, article, product, file
+from router import blog_get, blog_post, user, article, product, file, dependencies
 from templates import templates
 from auth import authentication
 from db import models
@@ -10,6 +10,9 @@ import time
 
 
 app = FastAPI()
+# Initilizing application with global dependecy
+# app = FastAPI(dependencies=[Depends()])
+app.include_router(dependencies.router)
 app.include_router(file.router)
 app.include_router(templates.router)
 app.include_router(authentication.router)
